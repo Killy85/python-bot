@@ -40,11 +40,8 @@ async def on_message(message):
             else :
                 _message = s.getvalue()
                 _message = _message[:500] + "\n ... \n" + _message[-500:]
-
-        import ipdb; ipdb.set_trace()
         await client.send_message(message.channel, "Output is ```%s```" % _message)
     elif message.attachments:
-        import ipdb; ipdb.set_trace()
         for attachement in message.attachments:
             if attachement.filename.endswith('.py'):
                 print(attachement.url)
@@ -73,8 +70,6 @@ async def on_message(message):
                 else :
                     _message = s.getvalue()
                     _message = _message[:500] + "\n ... \n" + _message[-500:]
-
-                import ipdb; ipdb.set_trace()
                 await client.send_message(message.channel, "Output is ```%s```" % _message)
                     
 
