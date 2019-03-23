@@ -35,7 +35,13 @@ async def on_message(message):
                 exec(code)
             except Exception as e:
                 print(e)
-            await client.send_message(message.channel, "Output is ```%s```" % s.getvalue())
+            if len(s.getvalue()) < 1500:
+                _message = s.getvalue()
+            else :
+                _message = s.getvalue()
+                _message = message[:500] + "\n ... \n" + message[-500:]
+
+            await client.send_message(message.channel, "Output is ```%s```" % _message)
     elif message.attachments:
         for attachement in message.attachments:
             if attachement['filename'].endswith('.py'):
