@@ -39,7 +39,7 @@ async def on_message(message):
                 _message = s.getvalue()
             else :
                 _message = s.getvalue()
-                _message = message[:500] + "\n ... \n" + message[-500:]
+                _message = _message[:500] + "\n ... \n" + _message[-500:]
 
         import ipdb; ipdb.set_trace()
         await client.send_message(message.channel, "Output is ```%s```" % _message)
@@ -71,7 +71,7 @@ async def on_message(message):
                     _message = s.getvalue()
                 else :
                     _message = s.getvalue()
-                    _message = message[:500] + "\n ... \n" + message[-500:]
+                    _message = _message[:500] + "\n ... \n" + _message[-500:]
 
                 import ipdb; ipdb.set_trace()
                 await client.send_message(message.channel, "Output is ```%s```" % _message)
