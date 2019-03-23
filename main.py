@@ -41,7 +41,8 @@ async def on_message(message):
                 _message = s.getvalue()
                 _message = message[:500] + "\n ... \n" + message[-500:]
 
-            await client.send_message(message.channel, "Output is ```%s```" % _message)
+        import ipdb; ipdb.set_trace()
+        await client.send_message(message.channel, "Output is ```%s```" % _message)
     elif message.attachments:
         for attachement in message.attachments:
             if attachement['filename'].endswith('.py'):
@@ -63,10 +64,18 @@ async def on_message(message):
                         out = runpy.run_path('./somefile.py')
                     except Exception as e:
                         print(e)
-                    await client.send_message(message.channel, "Output is ```%s```" % s.getvalue())
-                    if os.path.exists('./fig.png'):
+                if os.path.exists('./fig.png'):
                         await client.send_file(message.channel, 'fig.png')
                         os.remove('fig.png')
+                if len(s.getvalue()) < 1500:
+                    _message = s.getvalue()
+                else :
+                    _message = s.getvalue()
+                    _message = message[:500] + "\n ... \n" + message[-500:]
+
+                import ipdb; ipdb.set_trace()
+                await client.send_message(message.channel, "Output is ```%s```" % _message)
+                    
 
 @client.event
 async def on_ready():
