@@ -44,12 +44,13 @@ async def on_message(message):
         import ipdb; ipdb.set_trace()
         await client.send_message(message.channel, "Output is ```%s```" % _message)
     elif message.attachments:
+        import ipdb; ipdb.set_trace()
         for attachement in message.attachments:
-            if attachement['filename'].endswith('.py'):
-                print(attachement['url'])
+            if attachement.filename.endswith('.py'):
+                print(attachement.url)
                 user_agent = {'User-agent': 'Mozilla/5.0'}
                 req = urllib.request.Request(
-                    attachement['url'], 
+                    attachement.url, 
                     data=None, 
                     headers={
                         'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1916.47 Safari/537.36'
