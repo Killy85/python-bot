@@ -59,18 +59,19 @@ async def on_message(message):
                     f.write(content.decode('utf-8').replace('plt.show()', 'plt.savefig("fig.png")'))
                 with stdoutIO() as s:
                     try:
-                        out = runpy.run_path('./somefile.py')
+                        out = runpy.run_path('./somefile.py',run_name='__main__')
                     except Exception as e:
                         print(e)
                 if os.path.exists('./fig.png'):
-                        await client.send_file(message.channel, 'fig.png')
+                        file = discord.File('fig.png')
+                        await message.channel.send(file=file)
                         os.remove('fig.png')
                 if len(s.getvalue()) < 1500:
                     _message = s.getvalue()
                 else :
                     _message = s.getvalue()
                     _message = _message[:500] + "\n ... \n" + _message[-500:]
-                await client.send_message(message.channel, "Output is ```%s```" % _message)
+                await message.channel.send(f"Output is ```{_message}```")
                     
 
 @client.event
